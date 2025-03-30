@@ -1,0 +1,29 @@
+name: Run Solar Data Collection Daily
+
+on:
+  schedule:
+    - cron: '0 14 * * *'  # Runs at 8 PM IST (14:00 UTC)
+
+jobs:
+  run_script:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Set Up Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: '3.9'
+
+      - name: Install Dependencies
+        run: pip install pandas requests
+
+      - name: Run Data Collection Script
+        run: python main.py
+
+      - name: Store Data as Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: collected-solar-data
+          path: all_data.csv
