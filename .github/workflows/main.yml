@@ -28,9 +28,15 @@ jobs:
             echo "Creating an empty all_data.csv file..."
             touch all_data.csv
           fi
+           if [ ! -f solar_data.csv ]; then
+            echo "Creating an empty all_data.csv file..."
+            touch solar_data.csv
+          fi
 
       - name: Store Data as Artifact
         uses: actions/upload-artifact@v4
         with:
           name: collected-solar-data
-          path: all_data.csv
+          path: |
+            all_data.csv
+            solar_data.csv
