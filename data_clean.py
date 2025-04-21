@@ -7,11 +7,11 @@ today_date = today.strftime('%d-%m-%y')
 def dataClean(data):
 
     date = data['time'].str.split(' ').str.get(0)
-    data['time'] = data['time'].str.split(' ').str.get(1).astype(int)
-    data['temp'] = data['temp'].astype(int)
-    data['flux'] = data['flux'].astype(int)
-    data['speed'] = data['speed'].astype(int)
-    data['direction'] = data['direction'].astype(int)
+    data['time'] = data['time'].str.split(' ').str.get(1).astype(float)
+    data['temp'] = data['temp'].astype(float)
+    data['flux'] = data['flux'].astype(float)
+    data['speed'] = data['speed'].astype(float)
+    data['direction'] = data['direction'].astype(float)
 
     Date = pd.DataFrame(
     {
